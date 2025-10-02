@@ -1,0 +1,65 @@
+(1) package.json automatico
+* npm init -y
+
+en nuestro package.json
+* agregar "type": "module" debajo de   "main": "index.js"
+
+- npm run build -> Transpila (convierte) el código TypeScript de src a JavaScript.
+
+- npm run start -> Ejecuta el código JavaScript que fue transpilado y guardado en la carpeta dist. Este es el comando para la ejecución final de tu aplicación.
+
+- npm run dev -> Ejecuta el código TypeScript directamente usando tsx sin transpilación previa. Ideal para prototipos y pruebas rápidas en desarrollo.
+
+- npm run listen -> Ejecuta el código TypeScript usando ts-node y, con nodemon, reinicia automáticamente la aplicación cada vez que detecta un cambio en los archivos. Este es el script más útil para el desarrollo diario.
+
+"build": "npx tsc",
+"start": "node dist/index.js",
+"dev": "npx ts-node src/index.ts",
+"listen": "nodemon src/index.ts"
+
+(2) comando para instalar todas las dependencias de desarrollo
+* npm install --save-dev typescript @types/node nodemon
+* npm install --save-dev ts-node
+* npm install --save-dev @types/express @types/cors
+
+**npm install --save-dev typescript @types/node nodemon ts-node @types/express @types/cors**
+se usa para instalar los archivos de declaración de tipos de TypeScript
+Estos archivos (.d.ts) le permiten a TypeScript entender y verificar el código de las librerías, lo que habilita la verificación de errores y el autocompletado en tu editor de código.
+
+(3) comando para instalar todas las dependencias de producción
+* npm install express cors dotenv
+
+definiciones
+
+- express: framework de Node.js que simplifica la creación de aplicaciones web y APIs. Proporciona un conjunto de herramientas y funciones que facilitan la gestión de rutas etc
+
+- cors: mecanismo de seguridad del navegador que permite a las aplicaciones web acceder a recursos (como APIs) que se encuentran en un dominio diferente al de su propio origen
+
+- dotenv:  librería que carga variables de entorno desde un archivo .env a la memoria de tu aplicación.
+
+- typescript: El compilador de TypeScript. Esencial para cualquier proyecto TypeScript.
+
+- @types/node: Contiene las definiciones de tipos para las APIs de Node.js, permitiendo a TypeScript entender y dar soporte a módulos como fs, http, etc.
+
+- nodemon: Una herramienta que monitorea cambios en el código y reinicia el servidor automáticamente. Ideal para un flujo de trabajo de desarrollo eficiente.
+
+(4) crea tsconfig.json
+* npx tsc --init
+
+en nuestro tsconfig.json
+
+* descomentar  "rootDir": "./src", "outDir": "./dist" 
+src para codigo fuente .ts y dist codigo traspilado a js
+
+* descomentar "lib": ["esnext"], "types": ["node"],
+Le decimos qué bibliotecas queremos que conozca. Con ["esnext"] le decimos: “entiende todo lo nuevo de JavaScript moderno”.
+Le pedimos que cargue los tipos de Node.js. Esto permite que TypeScript sepa qué es process, __dirname, etc.
+
+*agregar al final del archivo   "allowImportingTsExtensions": true
+Esto permite que importemos archivos con la extensión .
+
+
+
+
+
+
