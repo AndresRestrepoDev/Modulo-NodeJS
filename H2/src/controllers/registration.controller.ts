@@ -2,6 +2,7 @@ import type { Request, Response } from "express";
 import { getRegistrationsService, getRegistrationByIdService, postRegistrationService, deleteRegistrationService, putRegistrationService } from "../services/registration.service.ts";
 import { sendSuccess, sendError } from "../utils/httpResponse.ts";
 import type { Registration } from "../models/registrations.ts";
+import { createLog } from "../services/log.service.ts";
 
 export const getRegistrations = async (_req: Request, res: Response) => {
   try {
@@ -28,7 +29,11 @@ export const getRegistrationById = async (req: Request, res: Response) => {
 
 export const postRegistration = async (req: Request, res: Response) => {
   try {
+    const user = (req as any).user;
+
     const registration = await postRegistrationService(req.body);
+
+    await createLog("Se inscribió a un evento", user.id, `Evento ID: ${registration.event_id}`);
     return sendSuccess<Registration>(res, 201, "Registration created successfully", registration);
   } catch (error) {
     console.error("[RegistrationController] Error creating registration:", error);
@@ -38,10 +43,13 @@ export const postRegistration = async (req: Request, res: Response) => {
 
 export const deleteRegistration = async (req: Request, res: Response) => {
   try {
-    const success = await deleteRegistrationService(Number(req.params.id));
-    if (!success)
-      return sendError(res, 404, "Registration not found");
+    const user = (req as any).user;
+    const { id } = req.params;
 
+    const success = await deleteRegistrationService(Number(req.params.id));
+    if (!success) { return sendError(res, 404, "Registration not found"); }
+
+    await createLog("Canceló su inscripción", user.id, `Inscripción ID: ${id}`);
     return sendSuccess(res, 200, "Registration deleted successfully");
   } catch (error) {
     console.error("[RegistrationController] Error deleting registration:", error);

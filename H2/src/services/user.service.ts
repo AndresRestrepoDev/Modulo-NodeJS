@@ -1,5 +1,6 @@
 import { User } from "../models/users.ts";
 import type { UserCreationAttributes } from "../models/users.ts";
+import { Op } from 'sequelize';
 
 type OpcionalUser = Partial<Omit<UserCreationAttributes, 'id' | 'createdAt' | 'updatedAt' | 'role'>>;
 
@@ -29,3 +30,20 @@ export const putUserService = async (id: number, body: OpcionalUser) => {
   await user.update(body);
   return user;
 };
+
+// consultas avanzadas
+export const searchRoleServices = async (rol:string) => {
+    try {
+        const users = await User.findAll({
+            where: {
+                role: {
+                    [Op.eq]: rol,
+                },
+            },
+        })
+        return users;
+    } catch (error) {
+        console.error('Error buscando usuarios por roles:', error);
+        throw error;
+    }
+}

@@ -26,6 +26,6 @@ export const putRegistrationService = async (id: number, body: OpcionalRegistrat
   const registration = await Registration.findByPk(id);
   if (!registration) return null;
   
-  await registration.update(body);
+  await registration.update(body as any);
   return registration;
 };

@@ -1,5 +1,7 @@
 import { Event } from "../models/events.ts";
 import type { EventCreationAttibutes } from "../models/events.ts";
+import { Op } from 'sequelize';
+
 
 type OpcionalEvent = Partial<Omit<EventCreationAttibutes, 'id' | 'createdAt' | 'updatedAt' | 'organizer_id'>>;
 
@@ -28,4 +30,45 @@ export const putEventService = async (id: number, body: OpcionalEvent) => {
   
   await event.update(body);
   return event;
+};
+
+
+//consultas avanzadas
+
+/**
+ * Busca eventos por título o ubicación
+ * @param keyword Palabra clave a buscar
+ */
+export const searchEvents = async (keyword: string) => {
+  try {
+    const events = await Event.findAll({
+      where: {
+        [Op.or]: [
+          { title: { [Op.iLike]: `%${keyword}%` } },
+          { locacion: { [Op.iLike]: `%${keyword}%` } },
+        ],
+      },
+      order: [['event_date', 'ASC']],
+    });
+
+    return events;
+  } catch (error) {
+    console.error('Error buscando eventos:', error);
+    throw error;
+  }
+};
+
+export const getFutureEvents = async () => {
+  const today = new Date(); 
+
+  const events = await Event.findAll({
+    where: {
+      event_date: {
+        [Op.gt]: today, // event_date > fecha actual
+      },
+    },
+    order: [['event_date', 'ASC']], 
+  });
+
+  return events;
 };

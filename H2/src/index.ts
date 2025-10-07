@@ -1,9 +1,11 @@
 import { initModels } from "./models/relaciones.ts";
 import { sequelize } from "./configSequelize/dbSeq.ts";
+import { connectMongo } from "./configMongo/mongo.ts";
 import { ENV } from './configSequelize/env.ts';
 import UserRouter from "./routes/user.ts";
 import EventRouter from "./routes/event.ts";
 import RegistrationRouter from "./routes/registration.ts";
+import AutRouter from "./routes/authRoutes.ts";
 
 import express from 'express';
 import cors from 'cors';
@@ -24,10 +26,11 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
-
 app.use('/user', UserRouter);
 app.use('/event', EventRouter)
 app.use('/registration ', RegistrationRouter);
+
+app.use('/auth', AutRouter);
 
 
 app.use((_req, res) => {
@@ -54,6 +57,7 @@ export const initDB = async () => {
 const startProgram = async () => {
     try{
         await initDB();
+        await connectMongo();
         app.listen(ENV.PORT, () => {
         console.log(`[Server] server running in http://localhost:${ENV.PORT}`)
         })
