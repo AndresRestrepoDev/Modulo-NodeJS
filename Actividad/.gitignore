@@ -1,2 +1,2 @@
 # Ignorar los documentos PDF específicos
-Actividad/*.pdf
+*.pdf
