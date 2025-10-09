@@ -1,0 +1,158 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background-color: #343a40;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.sidebar h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  text-align: left;
+  padding: 0.7rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.2s;
+}
+
+.nav-btn:hover {
+  background-color: #495057;
+}
+
+/* Main content */
+main {
+  flex-grow: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+#user-info {
+  font-size: 0.85rem;
+  border-top: 1px solid #555;
+  padding-top: 1rem;
+}
+
+.auth-forms {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.form-box {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  width: 280px;
+}
+
+.form-box h3 {
+  margin-top: 0;
+}
+
+.form-box input {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-box button {
+  width: 100%;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.6rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-box button:hover {
+  background-color: #0056b3;
+}
+
+.msg {
+  font-size: 0.85rem;
+  min-height: 1em;
+  margin-top: 0.4rem;
+}
+
+
+.event-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.event-actions input {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.event-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.event-table th,
+.event-table td {
+  border: 1px solid #ddd;
+  padding: 0.6rem;
+  text-align: left;
+}
+
+.event-table th {
+  background: #007bff;
+  color: white;
+}
+
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 1rem;
+  border-radius: 6px;
+  width: 300px;
+}
+
+.hidden { display: none; }

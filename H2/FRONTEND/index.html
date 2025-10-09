@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plataforma de Eventos Comunitarios</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- === SIDEBAR === -->
+      <aside class="sidebar">
+        <div>
+          <h2>🎟️ Eventos</h2>
+          <nav>
+            <button id="nav-auth" class="nav-btn">🔐 Login / Registro</button>
+            <button id="nav-events" class="nav-btn">🎉 Eventos</button>
+            <button id="nav-registrations" class="nav-btn">🧾 Mis inscripciones</button>
+          </nav>
+        </div>
+
+        <div id="user-info">
+          <!-- Info del usuario autenticado -->
+        </div>
+
+        <button id="logout-btn" style="display: none;">🚪 Cerrar sesión</button>
+      </aside>
+
+      <!-- === MAIN CONTENT === -->
+      <main id="main-content">
+        <h2>Cargando aplicación...</h2>
+      </main>
+    </div>
+
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>

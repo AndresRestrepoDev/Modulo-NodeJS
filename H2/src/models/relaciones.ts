@@ -3,8 +3,8 @@ import { Event } from "./events.ts";
 import { Registration } from "./registrations.ts";
 
 export const initModels = () =>{
-    User.hasMany(Event, { foreignKey: 'organizer_id' });
-    Event.belongsTo(User, { foreignKey: 'organizer_id' });
+User.hasMany(Event, { foreignKey: 'organizer_id' });
+    Event    .belongsTo(User, { foreignKey: 'organizer_id' });
 
     User.hasMany(Registration, { foreignKey: 'user_id' });
     Registration.belongsTo(User, { foreignKey: 'user_id' });

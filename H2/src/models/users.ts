@@ -12,7 +12,7 @@ export class User extends Model<InferAttributes<User>, InferCreationAttributes<U
     declare email: string;
     declare password: string;
     declare role: CreationOptional<'admin' | 'participant'>;
-    declare createdAt: CreationOptional<Date>;
+    declare createdAt: CreationOptional<Date>;  
     declare updatedAt: CreationOptional<Date>;
 }
 
@@ -63,14 +63,14 @@ User.init(
   }
 );
 
-User.beforeCreate(async (user) => {
-  if (user.password) {
-    user.password = await bcrypt.hash(user.password, 10);
-  }
-});
+// User.beforeCreate(async (user) => {
+//   if (user.password) {
+//     user.password = await bcrypt.hash(user.password, 10);
+//   }
+// });
 
-User.beforeUpdate(async (user) => {
-  if (user.changed("password")) {
-    user.password = await bcrypt.hash(user.password, 10);
-  }
-});
+// User.beforeUpdate(async (user) => {
+//   if (user.changed("password")) {
+//     user.password = await bcrypt.hash(user.password, 10);
+//   }
+// });
