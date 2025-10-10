@@ -1,0 +1,23 @@
+Configuración de Jest + TypeScript + Supertest
+
+Instalar dependencias necesarias
+npm install --save-dev jest ts-jest @types/jest supertest @types/supertest
+
+
+
+Configura Jest con soporte para TypeScript
+Esto generará un archivo llamado jest.config.js
+npx create-jest@latest
+
+
+npm i --save-dev @types/jest
+
+``````
+  "compilerOptions": {
+    // other options
+    "types": ["jest"]
+  }
+
+Agregar "jest" a "types" en tsconfig.json
+
+
